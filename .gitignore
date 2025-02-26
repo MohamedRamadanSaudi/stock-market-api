@@ -20,3 +20,6 @@ appsettings.Development.json
 # NuGet files
 project.assets.json
 *.nuget.*
+
+# Visual Studio files
+.vscode/
