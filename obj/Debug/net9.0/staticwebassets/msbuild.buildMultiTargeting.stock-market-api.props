@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\stock-market-api.props" />
+</Project>
