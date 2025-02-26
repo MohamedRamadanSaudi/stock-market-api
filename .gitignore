@@ -1,0 +1,22 @@
+# Build and output directories
+bin/
+obj/
+
+# User-specific files
+*.user
+
+# Sensitive data
+appsettings.Development.json
+
+# Compiled files
+*.dll
+*.exe
+*.pdb
+
+# Runtime and dependency files
+*.runtimeconfig.json
+*.deps.json
+
+# NuGet files
+project.assets.json
+*.nuget.*
