@@ -23,3 +23,4 @@ project.assets.json
 
 # Visual Studio files
 .vscode/
+.fake
