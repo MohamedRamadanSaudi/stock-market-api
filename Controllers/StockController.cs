@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stock_market_api.Data;
 using stock_market_api.Dtos.Stock;
+using stock_market_api.Interfaces;
 using stock_market_api.Mappers;
 using stock_market_api.models;
 
@@ -16,15 +17,17 @@ namespace stock_market_api.Controllers
     public class StockController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public StockController(ApplicationDBContext context)
+        private readonly IStockRepository _stockRepository;
+        public StockController(ApplicationDBContext context, IStockRepository stockRepository)
         {
             _context = context;
+            _stockRepository = stockRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetStocks()
         {
-            var stocks = await _context.Stocks.ToListAsync();
+            var stocks = await _stockRepository.GetStocksAsync();
             var stockDto = stocks.Select(stock => stock.ToStockDto());
 
             return Ok(stocks);
