@@ -71,5 +71,21 @@ namespace stock_market_api.Controllers
 
             return Ok(stockModel.ToStockDto());
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteStock([FromRoute] int id)
+        {
+            var stockModel = _context.Stocks.FirstOrDefault(stock => stock.Id == id);
+            if (stockModel == null)
+            {
+                return NotFound();
+            }
+
+            _context.Stocks.Remove(stockModel);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
