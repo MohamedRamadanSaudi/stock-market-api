@@ -20,5 +20,16 @@ namespace stock_market_api.Mappers
                 StockId = comment.StockId
             };
         }
+
+        public static Comment ToCommentFromCreate(this CreateCommentDto commentDti, int stockId)
+        {
+            return new Comment
+            {
+                Title = commentDti.Title,
+                Content = commentDti.Content,
+                StockId = stockId
+            };
+        }
+
     }
 }
