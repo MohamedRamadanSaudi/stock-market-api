@@ -15,5 +15,6 @@ namespace stock_market_api.models
         public DateTime Created { get; set; } = DateTime.Now;
         public int? StockId { get; set; }
         public Stock? Stock { get; set; }
+        public AppUser User { get; set; }
     }
 }
