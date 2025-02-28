@@ -10,5 +10,6 @@ namespace stock_market_api.Interfaces
     {
         Task<List<Stock>> GetUserPortfolio(AppUser user);
         Task<Stock?> AddStockToPortfolio(Portfolio portfolio);
+        Task<Stock?> DeleteStockFromPortfolio(AppUser user, string symbol);
     }
 }

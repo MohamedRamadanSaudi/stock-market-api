@@ -24,6 +24,20 @@ namespace stock_market_api.Repository
             return portfolio.Stock;
         }
 
+        public async Task<Stock?> DeleteStockFromPortfolio(AppUser user, string symbol)
+        {
+            var portfolioModel = await _context.Portfolios.FirstOrDefaultAsync(x => x.AppUserId == user.Id && x.Stock.Symbol.ToLower() == symbol.ToLower());
+
+            if (portfolioModel == null)
+            {
+                return null;
+            }
+
+            _context.Portfolios.Remove(portfolioModel);
+            await _context.SaveChangesAsync();
+            return portfolioModel.Stock;
+        }
+
         public async Task<List<Stock>> GetUserPortfolio(AppUser user)
         {
             return await _context.Portfolios.Where(x => x.AppUserId == user.Id)
