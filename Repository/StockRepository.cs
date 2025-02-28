@@ -68,7 +68,9 @@ namespace stock_market_api.Repository
                 }
             }
 
-            return await stocks.ToListAsync();
+            var skip = (query.PageNumber - 1) * query.PageSize;
+
+            return await stocks.Skip(skip).Take(query.PageSize).ToListAsync();
         }
 
         public Task<bool> StockExistsAsync(int id)
