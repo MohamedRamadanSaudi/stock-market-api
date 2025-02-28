@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using stock_market_api.Data;
 using stock_market_api.Dtos.Stock;
+using stock_market_api.Helpers;
 using stock_market_api.Interfaces;
 using stock_market_api.models;
 
@@ -45,9 +46,21 @@ namespace stock_market_api.Repository
             return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Stock>> GetStocksAsync()
+        public async Task<List<Stock>> GetStocksAsync(QueryObject query)
         {
-            return await _context.Stocks.Include(c => c.Comments).ToListAsync();
+            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(x => x.CompanyName.Contains(query.CompanyName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(x => x.Symbol.Contains(query.Symbol));
+            }
+
+            return await stocks.ToListAsync();
         }
 
         public Task<bool> StockExistsAsync(int id)

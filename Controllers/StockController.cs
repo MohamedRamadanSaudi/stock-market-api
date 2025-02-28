@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stock_market_api.Data;
 using stock_market_api.Dtos.Stock;
+using stock_market_api.Helpers;
 using stock_market_api.Interfaces;
 using stock_market_api.Mappers;
 using stock_market_api.models;
@@ -25,9 +26,9 @@ namespace stock_market_api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetStocks()
+        public async Task<IActionResult> GetStocks([FromQuery] QueryObject query)
         {
-            var stocks = await _stockRepository.GetStocksAsync();
+            var stocks = await _stockRepository.GetStocksAsync(query);
             var stockDto = stocks.Select(stock => stock.ToStockDto());
 
             return Ok(stocks);
