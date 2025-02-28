@@ -13,6 +13,6 @@ namespace stock_market_api.Interfaces
         Task<Comment?> GetCommentByIdAsync(int id); // Nullable
         Task<Comment> CreateCommentAsync(Comment comment);
         Task<Comment?> UpdateCommentAsync(int id, UpdateCommentDto comment); // Nullable
-        // Task<Comment?> DeleteCommentAsync(int id);
+        Task<Comment?> DeleteCommentAsync(int id);
     }
 }
