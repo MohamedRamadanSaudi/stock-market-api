@@ -21,12 +21,12 @@ namespace stock_market_api.Repository
 
         public async Task<Comment?> GetCommentByIdAsync(int id)
         {
-            return await _context.Comments.FindAsync(id);
+            return await _context.Comments.Include(a => a.User).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Comment>> GetCommentsAsync()
         {
-            return await _context.Comments.ToListAsync();
+            return await _context.Comments.Include(a => a.User).ToListAsync();
         }
 
         public async Task<Comment> CreateCommentAsync(Comment comment)

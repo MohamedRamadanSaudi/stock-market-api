@@ -17,6 +17,7 @@ namespace stock_market_api.Mappers
                 Title = comment.Title,
                 Content = comment.Content,
                 Created = comment.Created,
+                CreatedBy = comment.User.UserName,
                 StockId = comment.StockId
             };
         }

@@ -31,7 +31,7 @@ namespace stock_market_api.Controllers
         public async Task<IActionResult> GetStocks([FromQuery] QueryObject query)
         {
             var stocks = await _stockRepository.GetStocksAsync(query);
-            var stockDto = stocks.Select(stock => stock.ToStockDto());
+            var stockDto = stocks.Select(stock => stock.ToStockDto()).ToList();
 
             return Ok(stockDto);
         }
