@@ -8,6 +8,6 @@ namespace stock_market_api.models
 {
     public class AppUser : IdentityUser
     {
-
+        public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }
