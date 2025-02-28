@@ -1,0 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace stock_market_api.Dtos.Comment
+{
+    public class UpdateCommentDto
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
+    }
+}

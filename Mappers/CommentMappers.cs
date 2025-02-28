@@ -21,13 +21,22 @@ namespace stock_market_api.Mappers
             };
         }
 
-        public static Comment ToCommentFromCreate(this CreateCommentDto commentDti, int stockId)
+        public static Comment ToCommentFromCreate(this CreateCommentDto commentDto, int stockId)
         {
             return new Comment
             {
-                Title = commentDti.Title,
-                Content = commentDti.Content,
+                Title = commentDto.Title,
+                Content = commentDto.Content,
                 StockId = stockId
+            };
+        }
+
+        public static Comment ToCommentFromUpdate(this UpdateCommentDto commentDto)
+        {
+            return new Comment
+            {
+                Title = commentDto.Title,
+                Content = commentDto.Content
             };
         }
 

@@ -59,5 +59,19 @@ namespace stock_market_api.Controllers
 
             return CreatedAtAction(nameof(GetCommentById), new { id = comment.Id }, comment.ToCommentDto());
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateComment([FromRoute] int id, [FromBody] UpdateCommentDto commentDto)
+        {
+            var comment = await _commentRepository.UpdateCommentAsync(id, commentDto);
+
+            if (comment == null)
+            {
+                return NotFound("Comment not found");
+            }
+
+            return Ok(comment.ToCommentDto());
+        }
     }
 }

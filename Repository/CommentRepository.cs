@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using stock_market_api.Data;
+using stock_market_api.Dtos.Comment;
 using stock_market_api.Interfaces;
 using stock_market_api.models;
 
@@ -34,6 +35,23 @@ namespace stock_market_api.Repository
             await _context.SaveChangesAsync();
 
             return comment;
+        }
+
+        public async Task<Comment?> UpdateCommentAsync(int id, UpdateCommentDto comment)
+        {
+            var existingComment = await _context.Comments.FindAsync(id);
+
+            if (existingComment == null)
+            {
+                return null;
+            }
+
+            existingComment.Title = comment.Title;
+            existingComment.Content = comment.Content;
+
+            await _context.SaveChangesAsync();
+
+            return existingComment;
         }
     }
 }
