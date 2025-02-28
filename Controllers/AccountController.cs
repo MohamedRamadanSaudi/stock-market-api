@@ -11,8 +11,8 @@ using stock_market_api.models;
 
 namespace stock_market_api.Controllers
 {
-    [Route("api/account")]
     [ApiController]
+    [Route("api/account")]
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
