@@ -16,6 +16,14 @@ namespace stock_market_api.Repository
         {
             _context = context;
         }
+
+        public async Task<Stock?> AddStockToPortfolio(Portfolio portfolio)
+        {
+            await _context.Portfolios.AddAsync(portfolio);
+            await _context.SaveChangesAsync();
+            return portfolio.Stock;
+        }
+
         public async Task<List<Stock>> GetUserPortfolio(AppUser user)
         {
             return await _context.Portfolios.Where(x => x.AppUserId == user.Id)

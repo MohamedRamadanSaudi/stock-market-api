@@ -9,5 +9,6 @@ namespace stock_market_api.Interfaces
     public interface IPortfolioRepository
     {
         Task<List<Stock>> GetUserPortfolio(AppUser user);
+        Task<Stock?> AddStockToPortfolio(Portfolio portfolio);
     }
 }

@@ -12,6 +12,7 @@ namespace stock_market_api.Interfaces
     {
         Task<List<Stock>> GetStocksAsync(QueryObject query);
         Task<Stock?> GetStockByIdAsync(int id); // Nullable
+        Task<Stock?> GetStockBySymbolAsync(string symbol); // Nullable
         Task<Stock> CreateStockAsync(Stock stock);
         Task<Stock?> UpdateStockAsync(int id, UpdateStockRequestDto stock); // Nullable
         Task<Stock?> DeleteStockAsync(int id);
