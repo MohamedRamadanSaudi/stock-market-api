@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stock_market_api.Data;
@@ -13,8 +14,8 @@ using stock_market_api.models;
 
 namespace stock_market_api.Controllers
 {
-    [Route("api/stock")]
     [ApiController]
+    [Route("api/stock")]
     public class StockController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
@@ -26,12 +27,13 @@ namespace stock_market_api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetStocks([FromQuery] QueryObject query)
         {
             var stocks = await _stockRepository.GetStocksAsync(query);
             var stockDto = stocks.Select(stock => stock.ToStockDto());
 
-            return Ok(stocks);
+            return Ok(stockDto);
         }
 
         [HttpGet("{id:int}")]
