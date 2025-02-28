@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using stock_market_api.Data;
 
@@ -11,9 +12,11 @@ using stock_market_api.Data;
 namespace stock_market_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250228084559_SeedRole")]
+    partial class SeedRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace stock_market_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "Admin",
+                            Id = "6ea2a8ce-95a1-42f8-9c08-b6c3395e9500",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "User",
+                            Id = "9e1daa2b-e373-4508-b3c6-ca0bf9f67758",
                             Name = "User",
                             NormalizedName = "USER"
                         });
